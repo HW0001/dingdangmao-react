@@ -1,16 +1,8 @@
-import React from 'react'; 
-import './App.scss';
-
-import styled from 'styled-components';
-
-const Box = styled.div`
-   color:blue;
-`
-
+import React from 'react';  
+   
 function App() {
   return (
-    <div className="App">
-       <Box>sss</Box>
+    <div className="App"> 
     </div>
   );
 }
