@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Nav from "./Nav";
-import RouterView from "./RouterView";
 
 const Divwrapping = styled.div`
   display: flex;
@@ -9,15 +8,14 @@ const Divwrapping = styled.div`
   height: 100vh;
   .page-wrapping {
     flex-grow: 1;
+    overflow: auto;
   }
 `;
 
-const Layout = () => {
+const Layout = (props: any) => {
   return (
     <Divwrapping>
-      <div className="page-wrapping">
-        <RouterView />
-      </div>
+      <main className="page-wrapping">{props.children}</main>
       <Nav />
     </Divwrapping>
   );
