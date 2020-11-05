@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"; 
+import Icon from "./Icon";
+ 
 const Nav = ()=>{
     return (<nav>
         <ul>
           <li>
+            <Icon name="home"></Icon>
             <Link to="/home">账本</Link>
           </li>
           <li>
