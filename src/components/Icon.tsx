@@ -12,7 +12,7 @@ const Svg = styled.svg`
 const Icon = (props: IconProps) => {
   require("icons/" + props.name + ".svg");
   return (
-    <Svg>
+    <Svg className="icon">
       <use xlinkHref={"#" + props.name}></use>
     </Svg>
   );
