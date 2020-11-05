@@ -1,16 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 
 type IconProps = {
-    name:string;
-}
+  name: string;
+};
 
-const Icon = (props:IconProps) => {
-    require("icons/"+props.name+".svg")
-    return (
-        <svg>
-            <use xlinkHref={"#"+props.name}></use>
-        </svg>
-    )
-} 
+const Svg = styled.svg`
+  width: 1em;
+  height: 1em;
+`;
+const Icon = (props: IconProps) => {
+  require("icons/" + props.name + ".svg");
+  return (
+    <Svg>
+      <use xlinkHref={"#" + props.name}></use>
+    </Svg>
+  );
+};
 
 export default Icon;

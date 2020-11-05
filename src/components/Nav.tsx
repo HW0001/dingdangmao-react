@@ -10,9 +10,11 @@ const Nav = ()=>{
             <Link to="/home">账本</Link>
           </li>
           <li>
+          <Icon name="label"></Icon>
             <Link to="/labels">标签</Link>
           </li>
           <li>
+          <Icon name="chart"></Icon>
             <Link to="/statistics">统计</Link>
           </li>
         </ul>
