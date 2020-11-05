@@ -7,17 +7,17 @@ const Divwrapping = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-`;
-const DivPageWrapping = styled.div`
-  flex-grow: 1;
+  .page-wrapping {
+    flex-grow: 1;
+  }
 `;
 
 const Layout = () => {
   return (
     <Divwrapping>
-      <DivPageWrapping>
+      <div className="page-wrapping">
         <RouterView />
-      </DivPageWrapping>
+      </div>
       <Nav />
     </Divwrapping>
   );

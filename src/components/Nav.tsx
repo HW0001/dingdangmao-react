@@ -1,24 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import Icon from "./Icon";
- 
-const Nav = ()=>{
-    return (<nav>
-        <ul>
-          <li>
-            <Icon name="home"></Icon>
-            <Link to="/home">账本</Link>
-          </li>
-          <li>
+
+const Wrapping = styled.nav`
+  ul {
+    display: flex;
+    li {
+      width: 33.333%;
+    }
+  }
+`;
+const Nav = () => {
+  return (
+    <Wrapping>
+      <ul>
+        <li>
+          <Icon name="home"></Icon>
+          <Link to="/home">账本</Link>
+        </li>
+        <li>
           <Icon name="label"></Icon>
-            <Link to="/labels">标签</Link>
-          </li>
-          <li>
+          <Link to="/labels">标签</Link>
+        </li>
+        <li>
           <Icon name="chart"></Icon>
-            <Link to="/statistics">统计</Link>
-          </li>
-        </ul>
-        </nav> )
-}
+          <Link to="/statistics">统计</Link>
+        </li>
+      </ul>
+    </Wrapping>
+  );
+};
 
 export default Nav;
