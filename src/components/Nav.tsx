@@ -8,6 +8,10 @@ const Wrapping = styled.nav`
     display: flex;
     li {
       width: 33.333%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 `;
