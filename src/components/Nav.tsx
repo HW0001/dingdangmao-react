@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
 
@@ -13,6 +13,12 @@ const Wrapping = styled.nav`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        &.selected {
+          color: red;
+          &.icon {
+            fill: red;
+          }
+        }
         .icon {
           width: 2em;
           height: 2em;
@@ -26,22 +32,22 @@ const Nav = () => {
     <Wrapping>
       <ul>
         <li>
-          <Link to="/home">
-            <Icon name="home"></Icon>
-            <span>账本</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/labels">
+          <NavLink to="/labels" activeClassName="selected">
             <Icon name="label"></Icon>
             <span>标签</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/statistics">
+          <NavLink to="/home" activeClassName="selected">
+            <Icon name="home"></Icon>
+            <span>账本</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/statistics" activeClassName="selected">
             <Icon name="chart"></Icon>
             <span>统计</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </Wrapping>
