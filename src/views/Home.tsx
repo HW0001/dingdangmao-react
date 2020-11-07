@@ -1,4 +1,5 @@
 import FormInput from "components/home/FormInput";
+import RecordType from "components/home/RecordType";
 import Tags from "components/home/Tags";
 import Layout from "components/Layout";
 import React from "react";
@@ -10,11 +11,6 @@ const MainWrapping = styled.main`
   height: 100%;
 `;
 
-const TypeSection = styled.section`
-  li {
-    display: inline-block;
-  }
-`;
 const KeysSection = styled.section`
   li {
     display: inline-block;
@@ -27,12 +23,7 @@ const Home = () => {
       <MainWrapping>
         <Tags />
         <FormInput />
-        <TypeSection>
-          <ul>
-            <li>支出</li>
-            <li>收入</li>
-          </ul>
-        </TypeSection>
+        <RecordType />
         <KeysSection>
           <input type="text" />
           <ul>
