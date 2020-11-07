@@ -26,6 +26,7 @@ const KeysSection = styled.section`
       &.ok {
         float: right;
         height: 128px;
+        line-height: 128px;
       }
       &.zero {
         width: 50%;
