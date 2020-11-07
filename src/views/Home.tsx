@@ -1,3 +1,4 @@
+import FormInput from "components/home/FormInput";
 import Tags from "components/home/Tags";
 import Layout from "components/Layout";
 import React from "react";
@@ -9,7 +10,6 @@ const MainWrapping = styled.main`
   height: 100%;
 `;
 
-const NotesSection = styled.section``;
 const TypeSection = styled.section`
   li {
     display: inline-block;
@@ -26,12 +26,7 @@ const Home = () => {
     <Layout>
       <MainWrapping>
         <Tags />
-        <NotesSection>
-          <label>
-            备注:
-            <input type="text" placeholder="在这里添加备注" />
-          </label>
-        </NotesSection>
+        <FormInput />
         <TypeSection>
           <ul>
             <li>支出</li>
