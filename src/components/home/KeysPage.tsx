@@ -77,7 +77,7 @@ type Props = {
   onSave: () => void;
 };
 
-const KeysPage = (props: Props) => {
+const KeysPage: React.FC<Props> = (props) => {
   const money = props.value;
   const btnWrappingClick = (e: React.MouseEvent<HTMLUListElement>) => {
     const litxt = (e.target as HTMLLIElement).textContent;

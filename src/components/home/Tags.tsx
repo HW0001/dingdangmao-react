@@ -34,7 +34,7 @@ type Props = {
   value: string[];
   onChange: (val: string[]) => void;
 };
-const Tags = (props: Props) => {
+const Tags: React.FC<Props> = (props) => {
   const [tags, setTags] = useState(["衣", "食", "住", "行"]);
   const selectedTags = props.value;
   const tagClick = (tag: string) => {

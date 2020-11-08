@@ -30,7 +30,7 @@ type Props = {
   value: "-" | "+";
   onChange: (val: "-" | "+") => void;
 };
-const RecordType = (props: Props) => {
+const RecordType: React.FC<Props> = (props) => {
   const category = { "-": "支出", "+": "收入" };
   const [categoryList] = useState<("-" | "+")[]>(["-", "+"]);
   const currGategory = props.value;

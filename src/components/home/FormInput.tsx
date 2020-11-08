@@ -21,7 +21,7 @@ type Props = {
   value: string;
   onChange: (val: string) => void;
 };
-const FormInput = (prop: Props) => {
+const FormInput: React.FC<Props> = (prop) => {
   const value = prop.value;
   const inputChange = (e: React.FormEvent<HTMLInputElement>) => {
     prop.onChange((e.target as HTMLInputElement).value);
