@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TypeSection = styled.section`
@@ -27,11 +27,25 @@ const TypeSection = styled.section`
 `;
 
 const RecordType = () => {
+  const category = { "-": "支出", "+": "收入" };
+  const [categoryList] = useState<("-" | "+")[]>(["-", "+"]);
+  const [currGategory, setCurrGategory] = useState<string>("-");
   return (
     <TypeSection>
       <ul>
-        <li className="selected">支出</li>
-        <li>收入</li>
+        {categoryList.map((c) => {
+          return (
+            <li
+              className={currGategory === c ? "selected" : ""}
+              onClick={() => {
+                setCurrGategory(c);
+              }}
+              key={category[c]}
+            >
+              {category[c]}
+            </li>
+          );
+        })}
       </ul>
     </TypeSection>
   );

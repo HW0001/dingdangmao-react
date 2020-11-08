@@ -73,7 +73,7 @@ const KeysSection = styled.section`
 const KeysPage = () => {
   return (
     <KeysSection>
-      <input type="text" value="100" />
+      <input type="text" defaultValue="100" />
       <ul>
         <li>1</li>
         <li>2</li>
