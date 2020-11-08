@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TagsSection = styled.section`
@@ -17,6 +17,9 @@ const TagsSection = styled.section`
       border-radius: 18px;
       padding: 0 16px;
       margin-right: 16px;
+      &.selected {
+        background-color: rgb(117, 117, 117);
+      }
     }
   }
 
@@ -29,15 +32,41 @@ const TagsSection = styled.section`
 `;
 
 const Tags = () => {
+  const [tags, setTags] = useState(["衣", "食", "住", "行"]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const tagClick = (tag: string) => {
+    const index = selectedTags.indexOf(tag);
+    if (index > -1) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+  const addTag = () => {
+    const tag = window.prompt("请输入标签！");
+    if (tag) {
+      if (tags.indexOf(tag) > -1) return alert("标签已存在");
+      setTags([...tags, tag]);
+    }
+  };
   return (
     <TagsSection>
       <ul>
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
+        {tags.map((t) => {
+          return (
+            <li
+              key={t}
+              onClick={() => {
+                tagClick(t);
+              }}
+              className={selectedTags.indexOf(t) > -1 ? "selected" : ""}
+            >
+              {t}
+            </li>
+          );
+        })}
       </ul>
-      <button>新增标签</button>
+      <button onClick={addTag}>新增标签</button>
     </TagsSection>
   );
 };
