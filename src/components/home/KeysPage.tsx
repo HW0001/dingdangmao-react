@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const KeysSection = styled.section`
@@ -72,13 +72,13 @@ const KeysSection = styled.section`
 `;
 
 type Props = {
-  value: number;
-  onChange: (val: number) => void;
+  value: string;
+  onChange: (val: string) => void;
+  onSave: () => void;
 };
 
 const KeysPage = (props: Props) => {
-  const [money, setMoney] = useState(props.value.toString());
-
+  const money = props.value;
   const btnWrappingClick = (e: React.MouseEvent<HTMLUListElement>) => {
     const litxt = (e.target as HTMLLIElement).textContent;
     if (!litxt) return;
@@ -97,7 +97,7 @@ const KeysPage = (props: Props) => {
         break;
       case "ok":
         saveRecord();
-        break;
+        return;
       case "0":
         t.length < 16 && t !== "0" && (t = t + litxt);
         break;
@@ -105,10 +105,10 @@ const KeysPage = (props: Props) => {
         t.length < 16 && t !== "0" && (t = t + litxt);
         t === "0" && (t = litxt);
     }
-    setMoney(t);
+    props.onChange(t);
   };
   const saveRecord = () => {
-    props.onChange(parseFloat(money));
+    props.onSave();
     console.log("已保存");
   };
 

@@ -17,9 +17,17 @@ const Home = () => {
     tags: [] as string[],
     notes: "",
     category: "-" as "-" | "+",
-    amount: 0,
+    amount: "0",
   });
 
+  const saveRecord = () => {
+    setRecord({
+      tags: [] as string[],
+      notes: "",
+      category: "-" as "-" | "+",
+      amount: "0",
+    });
+  };
   return (
     <Layout>
       <MainWrapping>
@@ -52,12 +60,13 @@ const Home = () => {
         />
         <KeysPage
           value={record.amount}
-          onChange={(amount: number) => {
+          onChange={(amount: string) => {
             setRecord({
               ...record,
               amount: amount,
             });
           }}
+          onSave={saveRecord}
         />
       </MainWrapping>
     </Layout>
