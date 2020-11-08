@@ -80,7 +80,7 @@ const KeysPage = () => {
     let t = money;
     switch (litxt) {
       case ".":
-        t.indexOf(litxt) === -1 && (t = t + litxt);
+        t.length < 16 && t.indexOf(litxt) === -1 && (t = t + litxt);
         t === "0" && (t = "0" + litxt);
         break;
       case "删除":
@@ -94,10 +94,10 @@ const KeysPage = () => {
         saveRecord();
         break;
       case "0":
-        t !== "0" && (t = t + litxt);
+        t.length < 16 && t !== "0" && (t = t + litxt);
         break;
       default:
-        t !== "0" && (t = t + litxt);
+        t.length < 16 && t !== "0" && (t = t + litxt);
         t === "0" && (t = litxt);
     }
     setMoney(t);
