@@ -3,7 +3,7 @@ import KeysPage from "components/home/KeysPage";
 import RecordType from "components/home/RecordType";
 import Tags from "components/home/Tags";
 import Layout from "components/Layout";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const MainWrapping = styled.main`
@@ -13,13 +13,52 @@ const MainWrapping = styled.main`
 `;
 
 const Home = () => {
+  const [record, setRecord] = useState({
+    tags: [] as string[],
+    notes: "",
+    category: "-" as "-" | "+",
+    amount: 0,
+  });
+
   return (
     <Layout>
       <MainWrapping>
-        <Tags />
-        <FormInput />
-        <RecordType />
-        <KeysPage />
+        <Tags
+          value={record.tags}
+          onChange={(tags: string[]) => {
+            setRecord({
+              ...record,
+              tags: tags,
+            });
+          }}
+        />
+        <FormInput
+          value={record.notes}
+          onChange={(note: string) => {
+            setRecord({
+              ...record,
+              notes: note,
+            });
+          }}
+        />
+        <RecordType
+          value={record.category}
+          onChange={(category: "-" | "+") => {
+            setRecord({
+              ...record,
+              category: category,
+            });
+          }}
+        />
+        <KeysPage
+          value={record.amount}
+          onChange={(amount: number) => {
+            setRecord({
+              ...record,
+              amount: amount,
+            });
+          }}
+        />
       </MainWrapping>
     </Layout>
   );

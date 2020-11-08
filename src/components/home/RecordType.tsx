@@ -26,10 +26,14 @@ const TypeSection = styled.section`
   }
 `;
 
-const RecordType = () => {
+type Props = {
+  value: "-" | "+";
+  onChange: (val: "-" | "+") => void;
+};
+const RecordType = (props: Props) => {
   const category = { "-": "支出", "+": "收入" };
   const [categoryList] = useState<("-" | "+")[]>(["-", "+"]);
-  const [currGategory, setCurrGategory] = useState<string>("-");
+  const currGategory = props.value;
   return (
     <TypeSection>
       <ul>
@@ -38,7 +42,7 @@ const RecordType = () => {
             <li
               className={currGategory === c ? "selected" : ""}
               onClick={() => {
-                setCurrGategory(c);
+                props.onChange(c);
               }}
               key={category[c]}
             >

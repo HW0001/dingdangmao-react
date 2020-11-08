@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const NotesSection = styled.section`
@@ -17,11 +17,14 @@ const NotesSection = styled.section`
     }
   }
 `;
-
-const FormInput = () => {
-  const [value, setValue] = useState("");
+type Props = {
+  value: string;
+  onChange: (val: string) => void;
+};
+const FormInput = (prop: Props) => {
+  const value = prop.value;
   const inputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setValue((e.target as HTMLInputElement).value);
+    prop.onChange((e.target as HTMLInputElement).value);
   };
   return (
     <NotesSection>

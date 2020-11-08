@@ -71,8 +71,13 @@ const KeysSection = styled.section`
   }
 `;
 
-const KeysPage = () => {
-  const [money, setMoney] = useState("0");
+type Props = {
+  value: number;
+  onChange: (val: number) => void;
+};
+
+const KeysPage = (props: Props) => {
+  const [money, setMoney] = useState(props.value.toString());
 
   const btnWrappingClick = (e: React.MouseEvent<HTMLUListElement>) => {
     const litxt = (e.target as HTMLLIElement).textContent;
@@ -103,6 +108,7 @@ const KeysPage = () => {
     setMoney(t);
   };
   const saveRecord = () => {
+    props.onChange(parseFloat(money));
     console.log("已保存");
   };
 

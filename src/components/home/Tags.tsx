@@ -30,16 +30,19 @@ const TagsSection = styled.section`
     border-bottom: 1px solid #000;
   }
 `;
-
-const Tags = () => {
+type Props = {
+  value: string[];
+  onChange: (val: string[]) => void;
+};
+const Tags = (props: Props) => {
   const [tags, setTags] = useState(["衣", "食", "住", "行"]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.value;
   const tagClick = (tag: string) => {
     const index = selectedTags.indexOf(tag);
     if (index > -1) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
+      props.onChange(selectedTags.filter((t) => t !== tag));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   const addTag = () => {
