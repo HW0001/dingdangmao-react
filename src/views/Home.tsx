@@ -12,7 +12,7 @@ const MainWrapping = styled.main`
   height: 100%;
 `;
 
-const Home = () => {
+const Home: React.FC = () => {
   const [record, setRecord] = useState({
     tags: [] as string[],
     notes: "",
@@ -20,6 +20,12 @@ const Home = () => {
     amount: "0",
   });
 
+  const onChange = (obj: Partial<typeof record>) => {
+    setRecord({
+      ...record,
+      ...obj,
+    });
+  };
   const saveRecord = () => {
     setRecord({
       tags: [] as string[],
@@ -33,38 +39,26 @@ const Home = () => {
       <MainWrapping>
         <Tags
           value={record.tags}
-          onChange={(tags: string[]) => {
-            setRecord({
-              ...record,
-              tags: tags,
-            });
+          onChange={(tags) => {
+            onChange({ tags });
           }}
         />
         <FormInput
           value={record.notes}
-          onChange={(note: string) => {
-            setRecord({
-              ...record,
-              notes: note,
-            });
+          onChange={(notes) => {
+            onChange({ notes });
           }}
         />
         <RecordType
           value={record.category}
-          onChange={(category: "-" | "+") => {
-            setRecord({
-              ...record,
-              category: category,
-            });
+          onChange={(category) => {
+            onChange({ category });
           }}
         />
         <KeysPage
           value={record.amount}
-          onChange={(amount: string) => {
-            setRecord({
-              ...record,
-              amount: amount,
-            });
+          onChange={(amount) => {
+            onChange({ amount });
           }}
           onSave={saveRecord}
         />
