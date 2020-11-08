@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const NotesSection = styled.section`
@@ -19,11 +19,20 @@ const NotesSection = styled.section`
 `;
 
 const FormInput = () => {
+  const [value, setValue] = useState("");
+  const inputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setValue((e.target as HTMLInputElement).value);
+  };
   return (
     <NotesSection>
       <label>
         <span>备注:</span>
-        <input type="text" placeholder="在这里添加备注" />
+        <input
+          type="text"
+          placeholder="在这里添加备注"
+          value={value}
+          onInput={inputChange}
+        />
       </label>
     </NotesSection>
   );
