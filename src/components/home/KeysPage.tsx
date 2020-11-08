@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const KeysSection = styled.section`
-  input {
+  .output {
     border: none;
     display: block;
     width: 100%;
@@ -10,6 +10,7 @@ const KeysSection = styled.section`
     height: 2em;
     font-size: 36px;
     font-family: Consolas;
+    padding: 0 16px;
     box-shadow: inset 0 -5px 5px -5px rgb(0, 0, 0, 0.3),
       inset 0 5px 5px -5px rgb(0, 0, 0, 0.3);
   }
@@ -71,10 +72,44 @@ const KeysSection = styled.section`
 `;
 
 const KeysPage = () => {
+  const [money, setMoney] = useState("0");
+
+  const btnWrappingClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    const litxt = (e.target as HTMLLIElement).textContent;
+    if (!litxt) return;
+    let t = money;
+    switch (litxt) {
+      case ".":
+        t.indexOf(litxt) === -1 && (t = t + litxt);
+        t === "0" && (t = "0" + litxt);
+        break;
+      case "删除":
+        t.length > 0 && (t = t.slice(0, -1));
+        t.length === 0 && (t = "0");
+        break;
+      case "清空":
+        t = "0";
+        break;
+      case "ok":
+        saveRecord();
+        break;
+      case "0":
+        t !== "0" && (t = t + litxt);
+        break;
+      default:
+        t !== "0" && (t = t + litxt);
+        t === "0" && (t = litxt);
+    }
+    setMoney(t);
+  };
+  const saveRecord = () => {
+    console.log("已保存");
+  };
+
   return (
     <KeysSection>
-      <input type="text" defaultValue="100" />
-      <ul>
+      <div className="output">{money}</div>
+      <ul onClick={btnWrappingClick}>
         <li>1</li>
         <li>2</li>
         <li>3</li>
