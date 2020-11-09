@@ -34,7 +34,7 @@ const FormInput: React.FC<Props> = (prop) => {
           type="text"
           placeholder="在这里添加备注"
           value={value}
-          onInput={inputChange}
+          onChange={inputChange}
         />
       </label>
     </NotesSection>

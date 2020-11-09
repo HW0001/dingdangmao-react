@@ -28,7 +28,7 @@ const Label = () => {
         <ol>
           {tags.map((t) => {
             return (
-              <li>
+              <li key={t.id}>
                 <Link to={`labels/${t.id}`}>
                   <span>{t.name}</span>
                   <Icon name="right" />

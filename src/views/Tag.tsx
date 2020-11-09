@@ -22,6 +22,21 @@ const Wrappring = styled.div`
       height: 1.5em;
     }
   }
+  main {
+    padding: 4px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  button {
+    display: block;
+    font-size: 16px;
+    padding: 8px 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: rgb(118, 118, 118);
+    color: white;
+    border: none;
+  }
 `;
 
 type Params = {
@@ -31,12 +46,16 @@ type Params = {
 const Tag: React.FC = (props) => {
   const { id } = useParams<Params>();
   const { findTag, updateTag } = useTags();
-  const tag = findTag(id);
+  let tag = findTag(id);
   const onChange = (value: string) => {
     updateTag({
       id,
-      name: tag.name,
+      name: value,
     });
+  };
+  const delTag = () => {
+    if (window.confirm("是否删除该标签？")) {
+    }
   };
   return (
     <Layout>
@@ -50,6 +69,7 @@ const Tag: React.FC = (props) => {
         <main>
           <FormInput value={tag.name} onChange={onChange} />
         </main>
+        <button onClick={delTag}>删除标签</button>
       </Wrappring>
     </Layout>
   );

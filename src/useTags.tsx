@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useTags = () => {
-  const [tags, setTags] = useState([
+  const [tags, setTags] = useState<Tag[]>([
     { id: "1", name: "衣" },
     { id: "2", name: "食" },
     { id: "3", name: "住" },
@@ -11,11 +11,18 @@ const useTags = () => {
     const id = Math.max(...tags.map((t) => parseInt(t.id))) + 1;
     setTags([...tags, { id: id.toString(), name: tagName }]);
   };
+  const filterTag = (id: string, type: "=" | "!") => {
+    if (type === "!") return tags.filter((t) => t.id !== id);
+    else return tags.filter((t) => t.id === id);
+  };
   const findTag = (id: string) => {
-    return tags.filter((t) => t.id === id)[0];
+    return filterTag(id, "=")[0];
   };
   const updateTag = (tag: Tag) => {
-    setTags([...tags, tag]);
+    setTags([...filterTag(tag.id, "!"), tag]);
+  };
+  const delTag = (tagID: string) => {
+    setTags([...filterTag(tagID, "!")]);
   };
   return {
     tags,
@@ -23,6 +30,7 @@ const useTags = () => {
     createTag,
     findTag,
     updateTag,
+    delTag,
   };
 };
 
