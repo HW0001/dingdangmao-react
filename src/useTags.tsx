@@ -11,10 +11,18 @@ const useTags = () => {
     const id = Math.max(...tags.map((t) => parseInt(t.id))) + 1;
     setTags([...tags, { id: id.toString(), name: tagName }]);
   };
+  const findTag = (id: string) => {
+    return tags.filter((t) => t.id === id)[0];
+  };
+  const updateTag = (tag: Tag) => {
+    setTags([...tags, tag]);
+  };
   return {
     tags,
     setTags,
     createTag,
+    findTag,
+    updateTag,
   };
 };
 

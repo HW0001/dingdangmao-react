@@ -3,20 +3,24 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "views/Home";
 import Label from "views/Label";
 import Statistic from "views/Statistic";
+import Tag from "views/Tag";
 
 const RouterView = () => {
   return (
     <Switch>
-      <Route path="/home">
+      <Route exact path="/home">
         <Home />
       </Route>
-      <Route path="/labels">
+      <Route exact path="/labels">
         <Label />
       </Route>
-      <Route path="/statistics">
+      <Route exact path="/labels/:id">
+        <Tag />
+      </Route>
+      <Route exact path="/statistics">
         <Statistic />
       </Route>
-      <Redirect from="/" exact to="/home" />
+      <Redirect exact from="/" to="/home" />
       <Route path="*">
         <NotFund />
       </Route>
