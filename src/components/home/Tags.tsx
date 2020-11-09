@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import useTags from "useTags";
 
 const TagsSection = styled.section`
   flex-grow: 1;
@@ -35,21 +36,21 @@ type Props = {
   onChange: (val: string[]) => void;
 };
 const Tags: React.FC<Props> = (props) => {
-  const [tags, setTags] = useState(["衣", "食", "住", "行"]);
+  const { tags, createTag } = useTags();
   const selectedTags = props.value;
-  const tagClick = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const tagClick = (tagid: string) => {
+    const index = selectedTags.indexOf(tagid);
     if (index > -1) {
-      props.onChange(selectedTags.filter((t) => t !== tag));
+      props.onChange(selectedTags.filter((t) => t !== tagid));
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTags, tagid]);
     }
   };
   const addTag = () => {
-    const tag = window.prompt("请输入标签！");
-    if (tag) {
-      if (tags.indexOf(tag) > -1) return alert("标签已存在");
-      setTags([...tags, tag]);
+    const tagName = window.prompt("请输入标签！");
+    if (tagName) {
+      if (tags.some((t) => t.name === tagName)) return alert("标签已存在");
+      createTag(tagName);
     }
   };
   return (
@@ -58,13 +59,13 @@ const Tags: React.FC<Props> = (props) => {
         {tags.map((t) => {
           return (
             <li
-              key={t}
+              key={t.id}
               onClick={() => {
-                tagClick(t);
+                tagClick(t.id);
               }}
-              className={selectedTags.indexOf(t) > -1 ? "selected" : ""}
+              className={selectedTags.indexOf(t.id) > -1 ? "selected" : ""}
             >
-              {t}
+              {t.name}
             </li>
           );
         })}
