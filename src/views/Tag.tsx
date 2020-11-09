@@ -2,7 +2,7 @@ import FormInput from "components/home/FormInput";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "useTags";
 
@@ -45,8 +45,9 @@ type Params = {
 
 const Tag: React.FC = (props) => {
   const { id } = useParams<Params>();
-  const { findTag, updateTag } = useTags();
+  const { findTag, updateTag, deleteTag } = useTags();
   let tag = findTag(id);
+  const history = useHistory();
   const onChange = (value: string) => {
     updateTag({
       id,
@@ -55,6 +56,8 @@ const Tag: React.FC = (props) => {
   };
   const delTag = () => {
     if (window.confirm("是否删除该标签？")) {
+      deleteTag(id);
+      history.replace("/labels");
     }
   };
   return (
