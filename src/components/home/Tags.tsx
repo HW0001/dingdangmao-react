@@ -36,7 +36,7 @@ type Props = {
   onChange: (val: string[]) => void;
 };
 const Tags: React.FC<Props> = (props) => {
-  const { tags, createTag } = useTags();
+  const { tags, addTag } = useTags();
   const selectedTags = props.value;
   const tagClick = (tagid: string) => {
     const index = selectedTags.indexOf(tagid);
@@ -46,13 +46,7 @@ const Tags: React.FC<Props> = (props) => {
       props.onChange([...selectedTags, tagid]);
     }
   };
-  const addTag = () => {
-    const tagName = window.prompt("请输入标签！");
-    if (tagName) {
-      if (tags.some((t) => t.name === tagName)) return alert("标签已存在");
-      createTag(tagName);
-    }
-  };
+
   return (
     <TagsSection>
       <ul>

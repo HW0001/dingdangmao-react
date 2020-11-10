@@ -11,6 +11,13 @@ const useTags = () => {
     const id = Math.max(...tags.map((t) => parseInt(t.id))) + 1;
     setTags([...tags, { id: id.toString(), name: tagName }]);
   };
+  const addTag = () => {
+    const tagName = window.prompt("请输入标签！");
+    if (tagName) {
+      if (tags.some((t) => t.name === tagName)) return alert("标签已存在");
+      createTag(tagName);
+    }
+  };
   const filterTag = (id: string, type: "=" | "!") => {
     if (type === "!") return tags.filter((t) => t.id !== id);
     else return tags.filter((t) => t.id === id);
@@ -18,13 +25,13 @@ const useTags = () => {
   const findTag = (id: string) => {
     return filterTag(id, "=")[0];
   };
-  const findTagIndex = (id: string) => {
-    return tags.findIndex((t) => t.id === id);
-  };
   const updateTag = (tag: Tag) => {
-    const newTags: Tag[] = JSON.parse(JSON.stringify(tags));
-    newTags.splice(findTagIndex(tag.id), 1, tag);
-    setTags(newTags);
+    setTags(
+      tags.map((t) => {
+        t.id === tag.id && (t.name = tag.name);
+        return t;
+      })
+    );
   };
   const deleteTag = (tagID: string) => {
     setTags([...filterTag(tagID, "!")]);
@@ -36,6 +43,7 @@ const useTags = () => {
     findTag,
     updateTag,
     deleteTag,
+    addTag,
   };
 };
 

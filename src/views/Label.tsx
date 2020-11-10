@@ -1,3 +1,4 @@
+import CenterButton from "components/CenterButton";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import React from "react";
@@ -21,7 +22,7 @@ const Wrapping = styled.main`
 `;
 
 const Label = () => {
-  const { tags } = useTags();
+  const { tags, addTag } = useTags();
   return (
     <Layout>
       <Wrapping>
@@ -37,6 +38,7 @@ const Label = () => {
             );
           })}
         </ol>
+        <CenterButton onClick={addTag}>新增标签</CenterButton>
       </Wrapping>
     </Layout>
   );

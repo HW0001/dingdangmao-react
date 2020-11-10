@@ -1,3 +1,4 @@
+import CenterButton from "components/CenterButton";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import React, { ChangeEvent } from "react";
@@ -24,17 +25,6 @@ const Wrappring = styled.div`
   main {
     padding: 4px 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  }
-  button {
-    display: block;
-    font-size: 16px;
-    padding: 8px 16px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    background-color: rgb(118, 118, 118);
-    color: white;
-    border: none;
   }
 `;
 
@@ -70,7 +60,7 @@ const EditTag: React.FC = (props) => {
       <main>
         <Input label="标签名" value={tag.name} onChange={onChange} />
       </main>
-      <button onClick={delTag}>删除标签</button>
+      <CenterButton onClick={delTag}>删除标签</CenterButton>
     </Wrappring>
   );
 };
