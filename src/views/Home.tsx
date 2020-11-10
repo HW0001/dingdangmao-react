@@ -1,4 +1,4 @@
-import FormInput from "components/home/FormInput";
+import NoteInput from "components/home/NoteInput";
 import KeysPage from "components/home/KeysPage";
 import RecordType from "components/home/RecordType";
 import Tags from "components/home/Tags";
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
             onChange({ tags });
           }}
         />
-        <FormInput
+        <NoteInput
           value={record.notes}
           onChange={(notes) => {
             onChange({ notes });

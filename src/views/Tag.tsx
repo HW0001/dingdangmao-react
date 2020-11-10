@@ -1,4 +1,3 @@
-import FormInput from "components/home/FormInput";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import React from "react";
@@ -69,9 +68,7 @@ const Tag: React.FC = (props) => {
           </Link>
           <span>编辑标签</span>
         </header>
-        <main>
-          <FormInput value={tag.name} onChange={onChange} />
-        </main>
+        <main></main>
         <button onClick={delTag}>删除标签</button>
       </Wrappring>
     </Layout>

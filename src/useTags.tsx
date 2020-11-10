@@ -18,8 +18,13 @@ const useTags = () => {
   const findTag = (id: string) => {
     return filterTag(id, "=")[0];
   };
+  const findTagIndex = (id: string) => {
+    return tags.findIndex((t) => t.id === id);
+  };
   const updateTag = (tag: Tag) => {
-    setTags([...filterTag(tag.id, "!"), tag]);
+    const newTags: Tag[] = JSON.parse(JSON.stringify(tags));
+    newTags.splice(findTagIndex(tag.id), 1, tag);
+    setTags(newTags);
   };
   const deleteTag = (tagID: string) => {
     setTags([...filterTag(tagID, "!")]);
