@@ -11,7 +11,6 @@ type Props = {
   onChange: (notes: string) => void;
 };
 const NoteInput: React.FC<Props> = (prop) => {
-  const value = prop.value;
   const inputChange = (e: React.FormEvent<HTMLInputElement>) => {
     prop.onChange((e.target as HTMLInputElement).value);
   };

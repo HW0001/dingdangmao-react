@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "views/Home";
 import Label from "views/Label";
 import Statistic from "views/Statistic";
-import Tag from "views/Tag";
+import TagPage from "views/TagPage";
 
 const RouterView = () => {
   return (
@@ -15,7 +15,7 @@ const RouterView = () => {
         <Label />
       </Route>
       <Route exact path="/labels/:id">
-        <Tag />
+        <TagPage />
       </Route>
       <Route exact path="/statistics">
         <Statistic />

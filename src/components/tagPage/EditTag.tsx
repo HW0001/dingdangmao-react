@@ -1,6 +1,6 @@
 import Icon from "components/Icon";
-import Layout from "components/Layout";
-import React from "react";
+import Input from "components/Input";
+import React, { ChangeEvent } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "useTags";
@@ -42,15 +42,15 @@ type Params = {
   id: string;
 };
 
-const Tag: React.FC = (props) => {
+const EditTag: React.FC = (props) => {
   const { id } = useParams<Params>();
   const { findTag, updateTag, deleteTag } = useTags();
   let tag = findTag(id);
   const history = useHistory();
-  const onChange = (value: string) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     updateTag({
       id,
-      name: value,
+      name: (e.target as HTMLInputElement).value,
     });
   };
   const delTag = () => {
@@ -60,19 +60,19 @@ const Tag: React.FC = (props) => {
     }
   };
   return (
-    <Layout>
-      <Wrappring>
-        <header>
-          <Link to="/labels">
-            <Icon name="left" />
-          </Link>
-          <span>编辑标签</span>
-        </header>
-        <main></main>
-        <button onClick={delTag}>删除标签</button>
-      </Wrappring>
-    </Layout>
+    <Wrappring>
+      <header>
+        <Link to="/labels">
+          <Icon name="left" />
+        </Link>
+        <span>编辑标签</span>
+      </header>
+      <main>
+        <Input label="标签名" value={tag.name} onChange={onChange} />
+      </main>
+      <button onClick={delTag}>删除标签</button>
+    </Wrappring>
   );
 };
 
-export default Tag;
+export default EditTag;
