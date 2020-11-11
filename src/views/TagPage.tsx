@@ -31,6 +31,11 @@ const Wrappring = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   }
 `;
+const NotFound = styled.div`
+  text-align: center;
+  padding: 16px;
+`;
+
 const TagPage: React.FC = () => {
   const { id } = useParams<Params>();
   const { findTag, updateTag, deleteTag } = useTags();
@@ -64,8 +69,14 @@ const TagPage: React.FC = () => {
       </Wrappring>
     );
   };
-
-  return <Layout>{tag ? div() : <div>未找到标签</div>}</Layout>;
+  const notFound = () => {
+    return (
+      <NotFound>
+        <span>未找到标签</span>
+      </NotFound>
+    );
+  };
+  return <Layout>{tag ? div() : notFound()}</Layout>;
 };
 
 export default TagPage;

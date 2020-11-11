@@ -5,6 +5,7 @@ import Tags from "components/home/Tags";
 import Layout from "components/Layout";
 import React, { useState } from "react";
 import styled from "styled-components";
+import useRecordItem from "hooks/useRecordItem";
 
 const MainWrapping = styled.main`
   display: flex;
@@ -13,27 +14,21 @@ const MainWrapping = styled.main`
 `;
 
 const Home: React.FC = () => {
-  const [record, setRecord] = useState({
-    tags: [] as string[],
+  const defaultValue: RecordItem = {
+    tags: [],
     notes: "",
-    category: "-" as "-" | "+",
+    category: "-",
     amount: "0",
-  });
-
+    recordAT: "",
+  };
+  const [record, setRecord] = useState(defaultValue);
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
       ...record,
       ...obj,
     });
   };
-  const saveRecord = () => {
-    setRecord({
-      tags: [] as string[],
-      notes: "",
-      category: "-" as "-" | "+",
-      amount: "0",
-    });
-  };
+  const { saveRecord } = useRecordItem();
   return (
     <Layout>
       <MainWrapping>
@@ -60,7 +55,9 @@ const Home: React.FC = () => {
           onChange={(amount) => {
             onChange({ amount });
           }}
-          onSave={saveRecord}
+          onSave={() => {
+            saveRecord(record);
+          }}
         />
       </MainWrapping>
     </Layout>
