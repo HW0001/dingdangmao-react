@@ -29,6 +29,12 @@ const Home: React.FC = () => {
     });
   };
   const { saveRecord } = useRecordItem();
+  const saveInfo = () => {
+    saveRecord({ ...record, recordAT: new Date().toISOString() });
+    setRecord(defaultValue);
+    alert("保存成功");
+  };
+
   return (
     <Layout>
       <MainWrapping>
@@ -55,9 +61,7 @@ const Home: React.FC = () => {
           onChange={(amount) => {
             onChange({ amount });
           }}
-          onSave={() => {
-            saveRecord(record);
-          }}
+          onSave={saveInfo}
         />
       </MainWrapping>
     </Layout>
