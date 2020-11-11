@@ -35,17 +35,17 @@ const TagPage: React.FC = () => {
   const { id } = useParams<Params>();
   const { findTag, updateTag, deleteTag } = useTags();
   let tag = findTag(id);
-  const history = useHistory();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     updateTag({
       id,
       name: (e.target as HTMLInputElement).value,
     });
   };
+  const history = useHistory();
   const delTag = () => {
     if (window.confirm("是否删除该标签？")) {
       deleteTag(id);
-      //   history.replace("/labels");
+      history.goBack();
     }
   };
   const div = () => {
