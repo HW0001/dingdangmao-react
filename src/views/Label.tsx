@@ -4,7 +4,7 @@ import Layout from "components/Layout";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import useTags from "useTags";
+import useTags from "hooks/useTags";
 
 const Wrapping = styled.main`
   font-size: 16px;
@@ -23,6 +23,7 @@ const Wrapping = styled.main`
 
 const Label = () => {
   const { tags, addTag } = useTags();
+  console.log(tags);
   return (
     <Layout>
       <Wrapping>

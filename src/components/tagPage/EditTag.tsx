@@ -4,7 +4,7 @@ import Input from "components/Input";
 import React, { ChangeEvent } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import useTags from "useTags";
+import useTags from "hooks/useTags";
 
 const Wrappring = styled.div`
   font-size: 16px;
@@ -32,7 +32,7 @@ type Params = {
   id: string;
 };
 
-const EditTag: React.FC = (props) => {
+const EditTag: React.FC = () => {
   const { id } = useParams<Params>();
   const { findTag, updateTag, deleteTag } = useTags();
   let tag = findTag(id);
@@ -46,7 +46,7 @@ const EditTag: React.FC = (props) => {
   const delTag = () => {
     if (window.confirm("是否删除该标签？")) {
       deleteTag(id);
-      history.replace("/labels");
+      //   history.replace("/labels");
     }
   };
   return (

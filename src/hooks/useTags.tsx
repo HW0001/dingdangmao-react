@@ -1,16 +1,24 @@
-import { useState } from "react";
-const alltag = [
-  { id: "1", name: "衣" },
-  { id: "2", name: "食" },
-  { id: "3", name: "住" },
-  { id: "4", name: "行" },
-];
+import { useEffect, useRef, useState } from "react";
+import useUpdate from "./useUpdate";
+
 const useTags = () => {
-  const [tags, setTags] = useState<Tag[]>(alltag);
+  const [tags, setTags] = useState<Tag[]>([]);
+
+  useEffect(() => {
+    const txt = JSON.parse(localStorage.getItem("tag-items") || "[]");
+    setTags(txt);
+  }, []);
+
+  useUpdate(() => {
+    localStorage.setItem("tag-items", JSON.stringify(tags));
+  }, [tags]);
+
   const createTag = (tagName: string) => {
-    const id = Math.max(...tags.map((t) => parseInt(t.id))) + 1;
+    const id =
+      tags.length > 0 ? Math.max(...tags.map((t) => parseInt(t.id))) + 1 : 1;
     setTags([...tags, { id: id.toString(), name: tagName }]);
   };
+
   const addTag = () => {
     const tagName = window.prompt("请输入标签！");
     if (tagName) {
@@ -18,13 +26,18 @@ const useTags = () => {
       createTag(tagName);
     }
   };
+
   const filterTag = (id: string, type: "=" | "!") => {
     if (type === "!") return tags.filter((t) => t.id !== id);
     else return tags.filter((t) => t.id === id);
   };
+
   const findTag = (id: string) => {
-    return filterTag(id, "=")[0];
+    return tags.length > 0
+      ? filterTag(id.toString(), "=")[0]
+      : ({ id: "", name: "" } as Tag);
   };
+
   const updateTag = (tag: Tag) => {
     setTags(
       tags.map((t) => {
@@ -33,9 +46,11 @@ const useTags = () => {
       })
     );
   };
+
   const deleteTag = (tagID: string) => {
-    setTags([...filterTag(tagID, "!")]);
+    setTags(tags.filter((tag) => tag.id !== tagID));
   };
+
   return {
     tags,
     setTags,
