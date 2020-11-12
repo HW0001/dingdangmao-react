@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const TypeSection = styled.section`
   ul {
-    background-color: rgb(196, 196, 196);
     li {
       display: inline-block;
       width: 50%;
@@ -41,7 +40,7 @@ const RecordType: React.FC<Props> = (props) => {
           return (
             <li
               className={currGategory === c ? "selected" : ""}
-              onClick={() => {
+              onClick={(e) => {
                 props.onChange(c);
               }}
               key={category[c]}

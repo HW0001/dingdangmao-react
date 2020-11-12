@@ -1,10 +1,17 @@
+import RecordType from "components/home/RecordType";
 import Layout from "components/Layout";
-import React from "react";
+import RecordItemList from "components/statistic/RecordItemList";
+import React, { useState } from "react";
 
 const Statistic = () => {
+  const [cordType, setCordType] = useState<"-" | "+">("-");
+  const onChange = (val: "-" | "+") => {
+    setCordType(val);
+  };
   return (
     <Layout>
-      <h2>statistic</h2>
+      <RecordType value={cordType} onChange={onChange} />
+      <RecordItemList />
     </Layout>
   );
 };

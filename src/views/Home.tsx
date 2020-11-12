@@ -12,6 +12,11 @@ const MainWrapping = styled.main`
   flex-direction: column;
   height: 100%;
 `;
+
+const TypeWrappng = styled.div`
+  background-color: rgb(196, 196, 196);
+`;
+
 const defaultValue: RecordItem = {
   tags: [],
   notes: "",
@@ -19,6 +24,7 @@ const defaultValue: RecordItem = {
   amount: "0",
   recordAT: "",
 };
+
 const Home: React.FC = () => {
   const [record, setRecord] = useState(defaultValue);
   const onChange = (obj: Partial<typeof record>) => {
@@ -49,12 +55,14 @@ const Home: React.FC = () => {
             onChange({ notes });
           }}
         />
-        <RecordType
-          value={record.category}
-          onChange={(category) => {
-            onChange({ category });
-          }}
-        />
+        <TypeWrappng>
+          <RecordType
+            value={record.category}
+            onChange={(category) => {
+              onChange({ category });
+            }}
+          />
+        </TypeWrappng>
         <KeysPage
           value={record.amount}
           onChange={(amount) => {
