@@ -11,7 +11,7 @@ const Statistic = () => {
   return (
     <Layout>
       <RecordType value={cordType} onChange={onChange} />
-      <RecordItemList />
+      <RecordItemList cordtype={cordType} />
     </Layout>
   );
 };

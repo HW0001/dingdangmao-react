@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useUpdate from "./useUpdate";
 
 const defaultTag = [
@@ -60,7 +60,6 @@ const useTags = () => {
   const deleteTag = (tagID: string) => {
     setTags(tags.filter((tag) => tag.id !== tagID));
   };
-
   return {
     tags,
     setTags,
