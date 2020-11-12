@@ -25,7 +25,7 @@ const useRecordItem = () => {
     ]);
   };
   const getGroupedTags = (cordtype: "-" | "+") => {
-    const arr: { itemKey: string; items: RecordItem[] }[] = [];
+    const arr: { itemKey: string; total: number; items: RecordItem[] }[] = [];
     const newtags = clone(recordItems.filter((e) => e.category === cordtype));
     newtags.sort(
       (a, b) => dayjs(b.recordAT).valueOf() - dayjs(a.recordAT).valueOf()
@@ -34,10 +34,12 @@ const useRecordItem = () => {
       const date = dayjs(n.recordAT).format("YYYYMMDD");
       const lasitem = arr[arr.length - 1];
       if (lasitem && lasitem.itemKey === date) {
+        lasitem.total += parseFloat(n.amount);
         lasitem.items.push(n);
       } else {
         arr.push({
           itemKey: date,
+          total: parseFloat(n.amount),
           items: [n],
         });
       }
