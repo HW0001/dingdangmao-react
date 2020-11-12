@@ -33,7 +33,7 @@ const RecordItemList: React.FC<Props> = (props) => {
   const alltags = getGroupedTags(props.cordtype);
   console.log(alltags);
   const tagname = (tagids: string[]) => {
-    return tagids.map((t) => findTag(t).name).join(",");
+    return tagids.map((t) => findTag(t).name).join(",") || "无";
   };
   const recordlist = () => {
     return (
