@@ -12,15 +12,14 @@ const MainWrapping = styled.main`
   flex-direction: column;
   height: 100%;
 `;
-
+const defaultValue: RecordItem = {
+  tags: [],
+  notes: "",
+  category: "-",
+  amount: "0",
+  recordAT: "",
+};
 const Home: React.FC = () => {
-  const defaultValue: RecordItem = {
-    tags: [],
-    notes: "",
-    category: "-",
-    amount: "0",
-    recordAT: "",
-  };
   const [record, setRecord] = useState(defaultValue);
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({

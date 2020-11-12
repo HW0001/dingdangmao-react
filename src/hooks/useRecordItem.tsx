@@ -14,7 +14,13 @@ const useRecordItem = () => {
   }, [recordItems]);
 
   const saveRecord = (item: RecordItem) => {
-    setRecordItems([...recordItems, item]);
+    setRecordItems([
+      ...recordItems,
+      {
+        ...item,
+        amount: parseFloat(item.amount).toString(),
+      },
+    ]);
   };
   return {
     recordItems,
