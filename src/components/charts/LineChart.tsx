@@ -42,7 +42,7 @@ const LineChart: React.FC<Props> = (props) => {
 
     series: [
       {
-        name: props.title,
+        name: title[props.title],
         type: "line",
         stack: "总量",
         data: props.data,
