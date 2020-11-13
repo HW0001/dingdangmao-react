@@ -109,7 +109,6 @@ const KeysPage: React.FC<Props> = (props) => {
   };
   const saveRecord = () => {
     props.onSave();
-    console.log("已保存");
   };
 
   return (

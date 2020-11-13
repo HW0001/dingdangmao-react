@@ -41,7 +41,6 @@ const RecordItemList: React.FC<Props> = (props) => {
   const handleDate = (key: string) => {
     const current = dayjs();
     const recordAT = dayjs(key);
-    console.log(recordAT);
     if (recordAT.isSame(current, "d")) return "今天";
     else if (recordAT.add(1, "d").isSame(current, "d")) return "昨天";
     else if (recordAT.add(2, "d").isSame(current, "d")) return "前天";

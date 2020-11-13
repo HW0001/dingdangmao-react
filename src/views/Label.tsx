@@ -23,7 +23,6 @@ const Wrapping = styled.main`
 
 const Label = () => {
   const { tags, addTag } = useTags();
-  console.log(tags);
   return (
     <Layout>
       <Wrapping>
