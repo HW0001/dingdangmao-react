@@ -31,6 +31,15 @@ const Wrappring = styled.div`
     padding: 4px 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   }
+  .del-wrapping {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-top: 1em;
+    .del-icon {
+      width: 2em;
+      height: 2em;
+    }
+  }
 `;
 const NotFound = styled.div`
   text-align: center;
@@ -68,7 +77,9 @@ const TagPage: React.FC = () => {
           <Input label="标签名" value={tag.name} onChange={onBlur} />
         </main>
         <IconsPage onClick={onIconClick} selected={tag.iconName || ""} />
-        <CenterButton onClick={delTag}>删除标签</CenterButton>
+        <div className="del-wrapping">
+          <Icon className="del-icon" name="delete" onClick={delTag} />
+        </div>
       </Wrappring>
     );
   };

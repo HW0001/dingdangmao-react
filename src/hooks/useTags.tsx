@@ -45,7 +45,7 @@ const useTags = () => {
 
   const findTag = (id: string) => {
     return tags.length > 0
-      ? filterTag(id.toString(), "=")[0]
+      ? filterTag(id, "=")[0]
       : ({ id: "", name: "" } as Tag);
   };
 

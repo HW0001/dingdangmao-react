@@ -37,7 +37,9 @@ const RecordItemList: React.FC<Props> = (props) => {
   const { getGroupedTags } = useRecordItem();
   const alltags = getGroupedTags(props.cordtype);
   const tagname = (tagids: string[]) => {
-    return tagids.map((t) => findTag(t).name).join(",") || "无";
+    if (tagids.length > 0) {
+      return tagids.map((t) => (findTag(t) ? findTag(t).name : "无"));
+    } else return "无";
   };
   const handleDate = (key: string) => {
     const current = dayjs();
