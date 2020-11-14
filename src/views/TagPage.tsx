@@ -42,11 +42,13 @@ const TagPage: React.FC = () => {
   const { findTag, updateTag, deleteTag } = useTags();
   let tag = findTag(id);
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateTag({
-      id,
-      name: (e.target as HTMLInputElement).value,
-    });
+    updateTag(id, (e.target as HTMLInputElement).value, "");
   };
+
+  const onIconClick = (val: string) => {
+    updateTag(id, "", val);
+  };
+  console.log(tag);
   const history = useHistory();
   const delTag = () => {
     if (window.confirm("是否删除该标签？")) {
@@ -66,7 +68,7 @@ const TagPage: React.FC = () => {
         <main>
           <Input label="标签名" value={tag.name} onChange={onChange} />
         </main>
-        <IconsPage />
+        <IconsPage onClick={onIconClick} selected={tag.iconName || ""} />
         <CenterButton onClick={delTag}>删除标签</CenterButton>
       </Wrappring>
     );

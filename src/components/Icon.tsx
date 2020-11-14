@@ -12,7 +12,7 @@ const Svg = styled.svg`
 `;
 const Icon = (props: IconProps) => {
   if (props.path) {
-    require("../" + props.path + props.name + ".svg");
+    require("icons/" + props.path + props.name + ".svg");
   } else {
     require("icons/" + props.name + ".svg");
   }

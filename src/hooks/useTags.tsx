@@ -48,10 +48,14 @@ const useTags = () => {
       : ({ id: "", name: "" } as Tag);
   };
 
-  const updateTag = (tag: Tag) => {
+  const updateTag = (id: string, name: string, iconName: string) => {
     setTags(
       tags.map((t) => {
-        t.id === tag.id && (t.name = tag.name);
+        if (name) {
+          t.id === id && (t.name = name);
+        } else {
+          t.id === id && (t.iconName = iconName);
+        }
         return t;
       })
     );
