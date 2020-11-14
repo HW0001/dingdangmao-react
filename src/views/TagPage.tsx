@@ -6,6 +6,7 @@ import CenterButton from "components/CenterButton";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import styled from "styled-components";
+import IconsPage from "components/IconsPage";
 
 type Params = {
   id: string;
@@ -65,6 +66,7 @@ const TagPage: React.FC = () => {
         <main>
           <Input label="标签名" value={tag.name} onChange={onChange} />
         </main>
+        <IconsPage />
         <CenterButton onClick={delTag}>删除标签</CenterButton>
       </Wrappring>
     );

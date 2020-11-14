@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 type IconProps = {
   name: string;
+  path?: string;
 };
 
 const Svg = styled.svg`
@@ -10,7 +11,11 @@ const Svg = styled.svg`
   height: 1em;
 `;
 const Icon = (props: IconProps) => {
-  require("icons/" + props.name + ".svg");
+  if (props.path) {
+    require("../" + props.path + props.name + ".svg");
+  } else {
+    require("icons/" + props.name + ".svg");
+  }
   return (
     <Svg className="icon">
       <use xlinkHref={"#" + props.name}></use>
