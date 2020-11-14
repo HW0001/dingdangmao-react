@@ -1,35 +1,13 @@
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "hooks/useTags";
+import SelectedTagsIcon from "components/SelectedTagsIcon";
 
 const Wrapping = styled.main`
   font-size: 16px;
-  ol {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    li {
-      a {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        width: 2em;
-        height: 4em;
-        margin-left: 1.5em;
-        margin-top: 1em;
-        .icon {
-          width: 2em;
-          height: 2em;
-        }
-      }
-    }
-  }
-
   .btn_wrapping {
     text-align: center;
     padding-top: 32px;
@@ -41,7 +19,7 @@ const Wrapping = styled.main`
 `;
 
 const Label = () => {
-  const { tags, createTag } = useTags();
+  const { createTag } = useTags();
   const history = useHistory();
 
   const addTagBtn = () => {
@@ -51,25 +29,13 @@ const Label = () => {
       history.push("/labels/" + id);
     });
   };
+  const itemClick = (id: string) => {
+    history.push("/labels/" + id);
+  };
   return (
     <Layout>
       <Wrapping>
-        <ol>
-          {tags.map((t) => {
-            return (
-              <li key={t.id}>
-                <Link to={`labels/${t.id}`}>
-                  {t.iconName ? (
-                    <Icon name={t.iconName} path="tagicons/" />
-                  ) : (
-                    ""
-                  )}
-                  <span>{t.name}</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
+        <SelectedTagsIcon onIconClick={itemClick} />
         <div className="btn_wrapping">
           <Icon name="add" className="add-icon" onClick={addTagBtn} />
         </div>

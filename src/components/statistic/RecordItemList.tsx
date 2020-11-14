@@ -38,7 +38,7 @@ const RecordItemList: React.FC<Props> = (props) => {
   const alltags = getGroupedTags(props.cordtype);
   const tagname = (tagids: string[]) => {
     if (tagids.length > 0) {
-      return tagids.map((t) => (findTag(t) ? findTag(t).name : "无"));
+      return tagids.map((t) => (findTag(t) ? findTag(t).name : "无")).join(",");
     } else return "无";
   };
   const handleDate = (key: string) => {

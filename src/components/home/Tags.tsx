@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useTags from "hooks/useTags";
+import SelectedTagsIcon from "components/SelectedTagsIcon";
 
 const TagsSection = styled.section`
   flex-grow: 1;
@@ -8,20 +9,16 @@ const TagsSection = styled.section`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 0 16px;
-  ul {
-    padding-bottom: 8px;
-    li {
-      display: inline-block;
-      font-size: 14px;
-      background-color: rgb(217, 217, 217);
-      border-radius: 18px;
-      padding: 0 16px;
-      margin-right: 16px;
-      margin-top: 8px;
-      &.selected {
-        background-color: rgb(117, 117, 117);
-      }
+  li {
+    font-size: 14px;
+    &.selected {
+      transform: scale(1.2);
+      color: rgb(230, 182, 115);
+      font-weight: 600;
+    }
+    .icon {
+      width: 1.5em;
+      height: 1.5em;
     }
   }
 `;
@@ -30,34 +27,18 @@ type Props = {
   onChange: (val: string[]) => void;
 };
 const Tags: React.FC<Props> = (props) => {
-  const { tags } = useTags();
   const selectedTags = props.value;
-  const tagClick = (tagid: string) => {
-    const index = selectedTags.indexOf(tagid);
+  const itemClick = (id: string) => {
+    const index = selectedTags.indexOf(id);
     if (index > -1) {
-      props.onChange(selectedTags.filter((t) => t !== tagid));
+      props.onChange(selectedTags.filter((t) => t !== id));
     } else {
-      props.onChange([...selectedTags, tagid]);
+      props.onChange([...selectedTags, id]);
     }
   };
-
   return (
     <TagsSection>
-      <ul>
-        {tags.map((t) => {
-          return (
-            <li
-              key={t.id}
-              onClick={() => {
-                tagClick(t.id);
-              }}
-              className={selectedTags.indexOf(t.id) > -1 ? "selected" : ""}
-            >
-              {t.name}
-            </li>
-          );
-        })}
-      </ul>
+      <SelectedTagsIcon onIconClick={itemClick} selectedID={selectedTags} />
     </TagsSection>
   );
 };
