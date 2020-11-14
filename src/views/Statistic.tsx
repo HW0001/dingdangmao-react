@@ -1,4 +1,5 @@
 import LineChart from "components/charts/LineChart";
+import EmptyLine from "components/EmptyLine";
 import RecordType from "components/home/RecordType";
 import Layout from "components/Layout";
 import RecordItemList from "components/statistic/RecordItemList";
@@ -8,7 +9,8 @@ import React, { useState } from "react";
 
 const Statistic = () => {
   const [cordType, setCordType] = useState<"-" | "+">("-");
-  const { recordItems } = useRecordItem();
+  const { getDataInSevenDay } = useRecordItem();
+
   const onChange = (val: "-" | "+") => {
     setCordType(val);
   };
@@ -21,32 +23,18 @@ const Statistic = () => {
     }
     return arr;
   };
-  const getData = () => {
-    const currentItems = recordItems.filter((r) =>
-      dayjs(r.recordAT).isAfter(dayjs().subtract(7, "d"), "d")
-    );
-    const result: number[] = [];
-    for (let i = 6; i >= 0; i--) {
-      const arr = currentItems.filter((r) => {
-        const current = dayjs().subtract(i, "d");
-        console.log(current.toISOString());
-        return dayjs(r.recordAT).isSame(current, "d");
-      });
 
-      result.push(
-        arr.length > 0 ? arr.reduce((p, c) => p + parseFloat(c.amount), 0) : 0
-      );
-    }
-
-    return result;
+  const getTitle = () => {
+    return cordType === "-" ? "近七日支出" : "近七日收入";
   };
   return (
     <Layout>
       <RecordType value={cordType} onChange={onChange} />
+      <EmptyLine />
       <LineChart
-        title={cordType === "-" ? 0 : 1}
+        title={getTitle()}
         xaxis={getDates()}
-        data={getData()}
+        data={getDataInSevenDay(cordType)}
       />
       <RecordItemList cordtype={cordType} />
     </Layout>

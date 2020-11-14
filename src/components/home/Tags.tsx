@@ -8,7 +8,7 @@ const TagsSection = styled.section`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 16px;
+  padding: 0 16px;
   ul {
     padding-bottom: 8px;
     li {
@@ -23,20 +23,13 @@ const TagsSection = styled.section`
       }
     }
   }
-
-  button {
-    border: none;
-    background-color: #fff;
-    padding: 0 4px;
-    border-bottom: 1px solid #000;
-  }
 `;
 type Props = {
   value: string[];
   onChange: (val: string[]) => void;
 };
 const Tags: React.FC<Props> = (props) => {
-  const { tags, addTag } = useTags();
+  const { tags } = useTags();
   const selectedTags = props.value;
   const tagClick = (tagid: string) => {
     const index = selectedTags.indexOf(tagid);
@@ -64,7 +57,6 @@ const Tags: React.FC<Props> = (props) => {
           );
         })}
       </ul>
-      <button onClick={addTag}>新增标签</button>
     </TagsSection>
   );
 };

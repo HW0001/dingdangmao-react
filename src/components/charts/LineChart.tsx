@@ -9,11 +9,9 @@ const LineChartWrapping = styled.div`
 
 type Props = {
   xaxis: string[];
-  title: 0 | 1;
+  title: string;
   data: number[];
 };
-
-const title = ["近七日支出", "近七日收入"];
 
 const LineChart: React.FC<Props> = (props) => {
   const chart = useRef(null);
@@ -22,7 +20,7 @@ const LineChart: React.FC<Props> = (props) => {
       trigger: "axis",
     },
     legend: {
-      data: title,
+      data: ["近七日支出", "近七日收入"],
     },
     grid: {
       left: "3%",
@@ -42,7 +40,7 @@ const LineChart: React.FC<Props> = (props) => {
 
     series: [
       {
-        name: title[props.title],
+        name: props.title,
         type: "line",
         stack: "总量",
         data: props.data,
@@ -52,10 +50,9 @@ const LineChart: React.FC<Props> = (props) => {
       },
     ],
   };
-
   useEffect(() => {
     echarts.init(chart.current).setOption(options);
-  }, []);
+  }, [options]);
   return <LineChartWrapping ref={chart}></LineChartWrapping>;
 };
 

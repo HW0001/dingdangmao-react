@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const Wrapping = styled.div`
   font-size: 16px;
+  text-align: center;
   .date-items {
     .date-items-title {
       padding: 0 8px;

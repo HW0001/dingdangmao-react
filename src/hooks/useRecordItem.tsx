@@ -46,10 +46,32 @@ const useRecordItem = () => {
     });
     return arr;
   };
+  const getDataInSevenDay = (type: "-" | "+") => {
+    const currentItems = recordItems.filter(
+      (r) =>
+        r.category === type &&
+        dayjs(r.recordAT).isAfter(dayjs().subtract(7, "d"), "d")
+    );
+    const result: number[] = [];
+    for (let i = 6; i >= 0; i--) {
+      const arr = currentItems.filter((r) => {
+        const current = dayjs().subtract(i, "d");
+        return dayjs(r.recordAT).isSame(current, "d");
+      });
+
+      result.push(
+        arr.length > 0 ? arr.reduce((p, c) => p + parseFloat(c.amount), 0) : 0
+      );
+    }
+
+    return result;
+  };
+
   return {
     recordItems,
     saveRecord,
     getGroupedTags,
+    getDataInSevenDay,
   };
 };
 

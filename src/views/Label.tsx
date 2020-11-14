@@ -11,10 +11,10 @@ const Wrapping = styled.main`
   > ol {
     padding: 0 16px;
     > li {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
       > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 10px 0;
       }
     }
@@ -32,7 +32,7 @@ const Label = () => {
               <li key={t.id}>
                 <Link to={`labels/${t.id}`}>
                   <span>{t.name}</span>
-                  <Icon name="right" />
+                  {t.iconName ? <Icon name={t.iconName} /> : ""}
                 </Link>
               </li>
             );
