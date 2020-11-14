@@ -18,6 +18,7 @@ const TagsSection = styled.section`
       border-radius: 18px;
       padding: 0 16px;
       margin-right: 16px;
+      margin-top: 8px;
       &.selected {
         background-color: rgb(117, 117, 117);
       }

@@ -1,28 +1,56 @@
-import CenterButton from "components/CenterButton";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "hooks/useTags";
 
 const Wrapping = styled.main`
   font-size: 16px;
-  > ol {
-    padding: 0 16px;
-    > li {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      > a {
-        padding: 10px 0;
+  ol {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    li {
+      a {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        width: 2em;
+        height: 4em;
+        margin-left: 1.5em;
+        margin-top: 1em;
+        .icon {
+          width: 2em;
+          height: 2em;
+        }
       }
+    }
+  }
+
+  .btn_wrapping {
+    text-align: center;
+    padding-top: 32px;
+    .add-icon {
+      width: 2em;
+      height: 2em;
     }
   }
 `;
 
 const Label = () => {
-  const { tags, addTag } = useTags();
+  const { tags, createTag } = useTags();
+  const history = useHistory();
+
+  const addTagBtn = () => {
+    const id = createTag("");
+    const tid = setTimeout(() => {
+      clearTimeout(tid);
+      history.push("/labels/" + id);
+    });
+  };
   return (
     <Layout>
       <Wrapping>
@@ -31,14 +59,20 @@ const Label = () => {
             return (
               <li key={t.id}>
                 <Link to={`labels/${t.id}`}>
+                  {t.iconName ? (
+                    <Icon name={t.iconName} path="tagicons/" />
+                  ) : (
+                    ""
+                  )}
                   <span>{t.name}</span>
-                  {t.iconName ? <Icon name={t.iconName} /> : ""}
                 </Link>
               </li>
             );
           })}
         </ol>
-        <CenterButton onClick={addTag}>新增标签</CenterButton>
+        <div className="btn_wrapping">
+          <Icon name="add" className="add-icon" onClick={addTagBtn} />
+        </div>
       </Wrapping>
     </Layout>
   );

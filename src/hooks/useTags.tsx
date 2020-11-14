@@ -27,6 +27,7 @@ const useTags = () => {
     const id =
       tags.length > 0 ? Math.max(...tags.map((t) => parseInt(t.id))) + 1 : 1;
     setTags([...tags, { id: id.toString(), name: tagName }]);
+    return id;
   };
 
   const addTag = () => {
