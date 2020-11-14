@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import useUpdate from "./useUpdate";
 
-const defaultTag = [
-  { id: "1", name: "衣" },
-  { id: "2", name: "食" },
-  { id: "3", name: "住" },
-  { id: "4", name: "行" },
-];
+// const defaultTag = [
+//   { id: "1", name: "衣" },
+//   { id: "2", name: "食" },
+//   { id: "3", name: "住" },
+//   { id: "4", name: "行" },
+// ];
 
 const useTags = () => {
   const [tags, setTags] = useState<Tag[]>([]);
 
   useEffect(() => {
     let txt = JSON.parse(localStorage.getItem("tag-items") || "[]");
-    if (txt.length === 0) {
-      txt = defaultTag;
-    }
+    // if (txt.length === 0) {
+    //   txt = defaultTag;
+    // }
     setTags(txt);
   }, []);
 

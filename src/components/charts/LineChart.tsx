@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 var echarts = require("echarts");
 
@@ -15,7 +15,7 @@ type Props = {
 
 const LineChart: React.FC<Props> = (props) => {
   const chart = useRef(null);
-  const options = {
+  const [option] = useState({
     tooltip: {
       trigger: "axis",
     },
@@ -49,10 +49,26 @@ const LineChart: React.FC<Props> = (props) => {
         },
       },
     ],
-  };
+  });
+
   useEffect(() => {
-    echarts.init(chart.current).setOption(options);
-  }, [options]);
+    echarts.init(chart.current).setOption(option);
+  });
+
+  useEffect(() => {
+    echarts.init(chart.current).setOption({
+      xAxis: {
+        data: props.xaxis,
+      },
+      series: [
+        {
+          name: props.title,
+          data: props.data,
+        },
+      ],
+    });
+  }, [props]);
+
   return <LineChartWrapping ref={chart}></LineChartWrapping>;
 };
 

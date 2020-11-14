@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import useRecordItem from "hooks/useRecordItem";
 import useTags from "hooks/useTags";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Wrapping = styled.div`

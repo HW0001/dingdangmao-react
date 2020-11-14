@@ -45,26 +45,23 @@ const IconsPage: React.FC<Props> = (props) => {
     return arr;
   };
 
-  const liClick = () => {};
   return (
     <Wrapping>
       <ul>
         {icons.length > 0 &&
           icons.map((i) => {
-            {
-              return (
-                <li
-                  key={i}
-                  onClick={() => {
-                    props.onClick(i);
-                  }}
-                >
-                  {" "}
-                  <Icon name={i} path="tagicons/" />
-                  {i === props.selected ? <Icon name="checked" /> : ""}
-                </li>
-              );
-            }
+            return (
+              <li
+                key={i}
+                onClick={() => {
+                  props.onClick(i);
+                }}
+              >
+                {" "}
+                <Icon name={i} path="tagicons/" />
+                {i === props.selected ? <Icon name="checked" /> : ""}
+              </li>
+            );
           })}
       </ul>
     </Wrapping>

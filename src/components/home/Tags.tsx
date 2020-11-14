@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import useTags from "hooks/useTags";
 import SelectedTagsIcon from "components/SelectedTagsIcon";
 
 const TagsSection = styled.section`
