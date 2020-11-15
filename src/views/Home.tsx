@@ -27,13 +27,16 @@ const defaultValue: RecordItem = {
 
 const Home: React.FC = () => {
   const [record, setRecord] = useState(defaultValue);
+
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
       ...record,
       ...obj,
     });
   };
+
   const { saveRecord } = useRecordItem();
+
   const saveInfo = () => {
     saveRecord({ ...record, recordAT: new Date().toISOString() });
     setRecord(defaultValue);

@@ -8,6 +8,7 @@ const TagsSection = styled.section`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
+  padding: 8px;
   li {
     font-size: 14px;
     &.selected {

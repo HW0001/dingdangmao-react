@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "./Nav";
 
@@ -13,9 +14,21 @@ const Divwrapping = styled.div`
 `;
 
 const Layout = (props: any) => {
+  const wrapping = useRef<HTMLDivElement>(null);
+  const route = useLocation();
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (wrapping.current && route.pathname.indexOf("home") > -1) {
+        wrapping.current.scrollTop = 9999;
+      }
+      clearTimeout(id);
+    });
+  });
   return (
     <Divwrapping>
-      <main className="page-wrapping">{props.children}</main>
+      <main className="page-wrapping" ref={wrapping}>
+        {props.children}
+      </main>
       <Nav />
     </Divwrapping>
   );

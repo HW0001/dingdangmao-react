@@ -33,6 +33,9 @@ const SelectedTagsIcon: React.FC<Props> = (props) => {
       {tags.map((t) => {
         return (
           <li
+            onClick={() => {
+              props.onIconClick(t.id);
+            }}
             key={t.id}
             className={
               props.selectedID && props.selectedID.indexOf(t.id) > -1
@@ -40,17 +43,7 @@ const SelectedTagsIcon: React.FC<Props> = (props) => {
                 : ""
             }
           >
-            {t.iconName ? (
-              <Icon
-                onClick={() => {
-                  props.onIconClick(t.id);
-                }}
-                name={t.iconName}
-                path="tagicons/"
-              />
-            ) : (
-              ""
-            )}
+            {t.iconName ? <Icon name={t.iconName} path="tagicons/" /> : ""}
             <span>{t.name || "无"}</span>
           </li>
         );
