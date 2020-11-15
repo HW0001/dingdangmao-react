@@ -8,20 +8,30 @@ const Wrapping = styled.nav`
     display: flex;
     li {
       width: 33.333%;
-      a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        &.selected {
-          color: red;
-          &.icon {
-            fill: red;
+      div {
+        text-align: center;
+        a {
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          &.selected {
+            border: none;
+            border-radius: 50%;
+            height: 56px;
+            width: 56px;
+            background-color: rgb(255, 189, 39);
+            .icon {
+              transform: scale(1.4);
+            }
+            span {
+              display: none;
+            }
           }
-        }
-        .icon {
-          width: 2em;
-          height: 2em;
+          .icon {
+            width: 2em;
+            height: 2em;
+          }
         }
       }
     }
@@ -32,22 +42,28 @@ const Nav = () => {
     <Wrapping>
       <ul>
         <li>
-          <NavLink to="/labels" activeClassName="selected">
-            <Icon name="label"></Icon>
-            <span>标签</span>
-          </NavLink>
+          <div>
+            <NavLink to="/labels" activeClassName="selected">
+              <Icon name="label"></Icon>
+              <span>标签</span>
+            </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink to="/home" activeClassName="selected">
-            <Icon name="home"></Icon>
-            <span>账本</span>
-          </NavLink>
+          <div>
+            <NavLink to="/home" activeClassName="selected">
+              <Icon name="home"></Icon>
+              <span>账本</span>
+            </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink to="/statistics" activeClassName="selected">
-            <Icon name="chart"></Icon>
-            <span>统计</span>
-          </NavLink>
+          <div>
+            <NavLink to="/statistics" activeClassName="selected">
+              <Icon name="chart"></Icon>
+              <span>统计</span>
+            </NavLink>
+          </div>
         </li>
       </ul>
     </Wrapping>
